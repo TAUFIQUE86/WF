@@ -6,7 +6,7 @@ export const PromiseBanner: React.FC = () => {
     {
       brand: 'WHITE FOAM PROMISE',
       headline:
-        'WHITE FOAM: "CHAMAK JO KHUD BOLE" • EXTRA ACTIVE FOAM & STAINLESS BRILLIANCE',
+        'WHITE FOAM: "चमक जो खुद बोले" • EXTRA ACTIVE FOAM & STAINLESS BRILLIANCE',
       sub: 'Detergent Things Industries India',
       icon: Sparkles,
       color: 'bg-gradient-to-r from-amber-400 to-rose-500 text-slate-950 font-black',

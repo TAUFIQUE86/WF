@@ -17,11 +17,46 @@ export const CareersSection: React.FC = () => {
   const [applicantName, setApplicantName] = useState('');
   const [applicantEmail, setApplicantEmail] = useState('');
   const [applicantPhone, setApplicantPhone] = useState('');
+  const [applicantExperience, setApplicantExperience] = useState('');
   const [appliedSuccess, setAppliedSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const handleApply = (e: React.FormEvent) => {
+  const handleApply = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setAppliedSuccess(true);
+    if (!selectedJob) return;
+
+    if (import.meta.env.DEV) {
+      setSubmitError('Applications can be sent from the deployed website.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError('');
+    const body = new URLSearchParams({
+      'form-name': 'career-application',
+      'bot-field': '',
+      jobTitle: selectedJob.title,
+      applicantName,
+      applicantEmail,
+      applicantPhone,
+      experienceNote: applicantExperience,
+      privacyConsent: 'yes',
+    });
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!response.ok) throw new Error('Career application submission failed');
+      setAppliedSuccess(true);
+    } catch {
+      setSubmitError('We could not send your application. Please email contact@detergentthings.in.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,7 +73,7 @@ export const CareersSection: React.FC = () => {
               Good work begins with good people.
             </h2>
             <p className="text-white/90 text-sm sm:text-base leading-relaxed font-normal">
-              If you're looking for a workplace where effort is valued, ideas are heard, and the energy is <span className="font-bold underline decoration-white/50">Chamak jo khud Bole</span>, we'd love to meet you. Join our modern manufacturing facility and chemical labs in Bihar.
+              If you're looking for a workplace where effort is valued, ideas are heard, and the energy is <span className="font-bold underline decoration-white/50">चमक जो खुद बोले</span>, we'd love to meet you. Join our modern manufacturing facility and chemical labs in Bihar.
             </p>
           </div>
 
@@ -165,13 +200,25 @@ export const CareersSection: React.FC = () => {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleApply} className="space-y-4">
+                <form
+                  name="career-application"
+                  method="POST"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                  onSubmit={handleApply}
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="form-name" value="career-application" />
+                  <div className="hidden" aria-hidden="true">
+                    <label>Leave this field empty<input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
+                  </div>
                   <div>
                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
                       Full Name *
                     </label>
                     <input
                       type="text"
+                      name="applicantName"
                       required
                       placeholder="e.g. Ramesh Sharma"
                       value={applicantName}
@@ -187,6 +234,7 @@ export const CareersSection: React.FC = () => {
                       </label>
                       <input
                         type="email"
+                        name="applicantEmail"
                         required
                         placeholder="you@email.com"
                         value={applicantEmail}
@@ -200,6 +248,7 @@ export const CareersSection: React.FC = () => {
                       </label>
                       <input
                         type="tel"
+                        name="applicantPhone"
                         required
                         placeholder="+91 98765 43210"
                         value={applicantPhone}
@@ -214,18 +263,30 @@ export const CareersSection: React.FC = () => {
                       Brief Experience Note or Portfolio Link
                     </label>
                     <textarea
+                      name="experienceNote"
                       rows={3}
                       placeholder="Mention your relevant FMCG formulation, chemical engineering, or manufacturing experience..."
+                      value={applicantExperience}
+                      onChange={(e) => setApplicantExperience(e.target.value)}
                       className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-rose-600"
                     ></textarea>
                   </div>
 
+                  <label className="flex items-start gap-2 text-xs leading-relaxed text-slate-600">
+                    <input type="checkbox" name="privacyConsent" value="yes" required className="mt-0.5 accent-rose-600" />
+                    <span>I agree to send my application details for recruitment follow-up. See the Privacy Notice in the footer.</span>
+                  </label>
+
+                  {submitError && <p role="alert" className="text-xs font-semibold text-rose-700">{submitError}</p>}
+
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                    disabled={isSubmitting}
+                    aria-busy={isSubmitting}
+                    className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-1.5 cursor-pointer disabled:cursor-wait disabled:opacity-60"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    Submit Application (Dil Se Saaf Team)
+                    {isSubmitting ? 'Sending...' : 'Submit Application'}
                   </button>
                 </form>
               )}

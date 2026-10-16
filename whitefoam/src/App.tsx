@@ -57,7 +57,7 @@ export default function App() {
         />
 
         <main>
-          {/* Hero Section with Chamak jo khud Bole, Tough Stains Out & Interactive Stain Solver */}
+          {/* Hero Section with चमक जो खुद बोले, Tough Stains Out & Interactive Stain Solver */}
           <HeroSection
             onExploreProducts={() => scrollToSection('product-finder')}
             onExploreFacilities={() => scrollToSection('innovation-facilities')}
@@ -67,7 +67,7 @@ export default function App() {
           {/* Interactive Stain Laboratory with Before/After Drag Slider & Hard Water Advisor */}
           <StainLaboratory />
 
-          {/* Bihar Territory Dealership Availability & Distributor Profit Margin / ROI Calculator */}
+          {/* Pan-India dealership application and distributor information */}
           <DistributorPortal />
 
           {/* Product Finder (Interactive Matchmaker for White Foam) */}
@@ -79,7 +79,7 @@ export default function App() {
           {/* White Foam Consumer Products (Detergent Powders & Cakes) */}
           <WhiteFoamConsumerProducts
             onSelectProduct={(p) => setSelectedProductForModal(p)}
-            onOpenPartnership={() => handleOpenPartnership('White Foam Bihar Bulk Supply')}
+            onOpenPartnership={() => handleOpenPartnership('White Foam Bulk Supply')}
           />
 
           {/* White Foam BIG SHOT Feature Spotlight */}
@@ -94,7 +94,7 @@ export default function App() {
           {/* How to Wash Clothes: The Expert Laundry Guide */}
           <WashGuide />
 
-          {/* Manufacturing & Third-Party OEM Partnerships (Bihar Unit) */}
+          {/* Manufacturing & Third-Party OEM Partnerships across India */}
           <ManufacturingPartnership initialProduct={partnershipPreselectedProduct} />
 
           {/* People & Culture / Careers Section ("Dil Se Saaf") */}

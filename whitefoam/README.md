@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# WhiteFoam
 
-# Run and deploy your AI Studio app
+Static React and Vite site for White Foam consumer products, dealership inquiries, careers, and OEM partnerships.
 
-This contains everything you need to run your app locally.
+## Local Development
 
-View your app in AI Studio: https://ai.studio/apps/7eee49de-7344-480e-837b-925946d429d9
+**Requirements:** Node.js 24 and npm.
 
-## Run Locally
+```sh
+npm ci
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+Run the project checks before deployment:
 
+```sh
+npm run lint
+npm run build
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Netlify Deployment
+
+Connect this repository to Netlify. The included `netlify.toml` defines the build command, publish directory, Node version, SPA fallback, and response headers.
+
+Careers and OEM forms use Netlify Forms. After the first successful deploy, confirm both forms appear in the Netlify Forms dashboard, configure email notifications for new submissions, and test each form on the deployed URL. Form submissions are intentionally disabled on the local Vite development server.
+
+Dealership and sample-kit inquiries open prefilled WhatsApp drafts; visitors must press Send in WhatsApp to submit them.
+
+Add the production domain to canonical and social metadata, and publish a sitemap before enabling production search indexing. Review the privacy notice, retention period, Netlify notification recipients, and public business claims with the business owner before launch.

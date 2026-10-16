@@ -46,7 +46,7 @@ export const ProductFinder: React.FC<ProductFinderProps> = ({
             FIND THE BEST WHITE FOAM PRODUCT FOR YOU
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Manufactured by Detergent Things Industries India at our Bihar Unit. Whether you wash by hand, use a semi-automatic twin tub, or own a front-loading machine, discover the White Foam formula engineered for "Chamak jo khud Bole".
+            Manufactured by Detergent Things Industries India at our Bihar Unit. Whether you wash by hand, use a semi-automatic twin tub, or own a front-loading machine, discover the White Foam formula engineered for "चमक जो खुद बोले".
           </p>
         </div>
 

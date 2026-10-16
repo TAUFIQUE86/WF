@@ -32,47 +32,6 @@ interface DistrictInfo {
   slots: number;
 }
 
-const BIHAR_DISTRICTS: DistrictInfo[] = [
-  { name: 'Patna', nameHi: 'पटना', tier: 'Major City', status: 'Fast-Track', slots: 3 },
-  { name: 'Gaya', nameHi: 'गया', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Bhagalpur', nameHi: 'भागलपुर', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Muzaffarpur', nameHi: 'मुजफ्फरपुर', tier: 'Major City', status: 'Fast-Track', slots: 2 },
-  { name: 'Darbhanga', nameHi: 'दरभंगा', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Purnia', nameHi: 'पूर्णिया', tier: 'Regional Hub', status: 'Available', slots: 3 },
-  { name: 'Begusarai', nameHi: 'बेगूसराय', tier: 'Industrial / Agri Belt', status: 'Fast-Track', slots: 1 },
-  { name: 'Samastipur', nameHi: 'समस्तीपुर', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Nalanda / Bihar Sharif', nameHi: 'नालंदा / बिहार शरीफ', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Saran / Chhapra', nameHi: 'सारण / छपरा', tier: 'Regional Hub', status: 'Fast-Track', slots: 1 },
-  { name: 'Vaishali / Hajipur', nameHi: 'वैशाली / हाजीपुर', tier: 'Industrial / Agri Belt', status: 'Under Review', slots: 1 },
-  { name: 'Rohtas / Sasaram', nameHi: 'रोहतास / सासाराम', tier: 'Industrial / Agri Belt', status: 'Available', slots: 2 },
-  { name: 'East Champaran / Motihari', nameHi: 'पूर्वी चंपारण / मोतिहारी', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'West Champaran / Bettiah', nameHi: 'पश्चिम चंपारण / बेतिया', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Saharsa', nameHi: 'सहरसा', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Madhubani', nameHi: 'मधुबनी', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Siwan', nameHi: 'सीवान', tier: 'Regional Hub', status: 'Fast-Track', slots: 1 },
-  { name: 'Gopalganj', nameHi: 'गोपालगंज', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Katihar', nameHi: 'कटिहार', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Munger', nameHi: 'मुंगेर', tier: 'Industrial / Agri Belt', status: 'Available', slots: 1 },
-  { name: 'Sitamarhi', nameHi: 'सीतामढ़ी', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Bhojpur / Ara', nameHi: 'भोजपुर / आरा', tier: 'Regional Hub', status: 'Fast-Track', slots: 1 },
-  { name: 'Buxar', nameHi: 'बक्सर', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Nawada', nameHi: 'नवादा', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Jamui', nameHi: 'जमुई', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Kishanganj', nameHi: 'किशनगंज', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Araria', nameHi: 'अररिया', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Supaul', nameHi: 'सुपौल', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Khagaria', nameHi: 'खगड़िया', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Banka', nameHi: 'बांका', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Madhepura', nameHi: 'मधेपुरा', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Lakhisarai', nameHi: 'लखीसराय', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Sheikhpura', nameHi: 'शेखपुरा', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Kaimur / Bhabua', nameHi: 'कैमूर / भभुआ', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Aurangabad', nameHi: 'औरंगाबाद', tier: 'Regional Hub', status: 'Available', slots: 2 },
-  { name: 'Jehanabad', nameHi: 'जहानाबाद', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Arwal', nameHi: 'अरवल', tier: 'Regional Hub', status: 'Available', slots: 1 },
-  { name: 'Sheohar', nameHi: 'शिवहर', tier: 'Regional Hub', status: 'Available', slots: 1 },
-];
-
 export const DistributorPortal: React.FC = () => {
   const { language, t } = useLanguage();
 
@@ -88,13 +47,14 @@ export const DistributorPortal: React.FC = () => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [selectedDistrictForApply, setSelectedDistrictForApply] = useState('');
   const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
+  const [whatsAppError, setWhatsAppError] = useState('');
 
   // Application form state
   const [applicantName, setApplicantName] = useState('');
   const [applicantPhone, setApplicantPhone] = useState('');
   const [applicantFirm, setApplicantFirm] = useState('');
-  const [applicantTown, setApplicantTown] = useState('');
-  const [applicantDistrict, setApplicantDistrict] = useState('Patna');
+  const [applicantState, setApplicantState] = useState('');
+  const [applicantDistrict, setApplicantDistrict] = useState('');
   const [submittedMessage, setSubmittedMessage] = useState(false);
 
   // Sample form state
@@ -127,15 +87,10 @@ export const DistributorPortal: React.FC = () => {
   const metrics = calculateMetrics(investmentAmount, partnerTier);
 
   // Filtered districts
-  const filteredDistricts = BIHAR_DISTRICTS.filter((d) => {
-    const matchesSearch =
-      d.name.toLowerCase().includes(districtQuery.toLowerCase()) ||
-      d.nameHi.includes(districtQuery);
-    const matchesStatus = statusFilter === 'all' || d.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
+  const filteredDistricts: DistrictInfo[] = [];
 
   const handleOpenApplyModal = (districtName?: string) => {
+    setWhatsAppError('');
     if (districtName) {
       setSelectedDistrictForApply(districtName);
       setApplicantDistrict(districtName);
@@ -146,32 +101,41 @@ export const DistributorPortal: React.FC = () => {
 
   const handleApplySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmittedMessage(true);
+    setWhatsAppError('');
     // WhatsApp quick direct send
     const text = encodeURIComponent(
       `*Dealership Application - Detergent Things Industries India*\n` +
-      `Product: White Foam ("Chamak jo khud Bole")\n` +
+      `Product: White Foam ("चमक जो खुद बोले")\n` +
       `Name: ${applicantName}\n` +
       `Firm: ${applicantFirm}\n` +
       `Phone: ${applicantPhone}\n` +
-      `District: ${applicantDistrict} (${applicantTown})\n` +
-      `Investment Capacity: ₹${investmentAmount.toLocaleString('en-IN')}\n` +
-      `Preferred Tier: ${partnerTier.toUpperCase()}`
+      `City / District: ${applicantDistrict}\n` +
+      `State: ${applicantState}`
     );
-    window.open(`https://wa.me/919111911111?text=${text}`, '_blank');
+    const whatsappWindow = window.open(`https://wa.me/919111911111?text=${text}`, '_blank');
+    if (whatsappWindow) {
+      setSubmittedMessage(true);
+    } else {
+      setWhatsAppError('WhatsApp did not open. Allow pop-ups and try again.');
+    }
   };
 
   const handleSampleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSampleSubmitted(true);
+    setWhatsAppError('');
     const text = encodeURIComponent(
       `*Free White Foam Sample Kit Request*\n` +
-      `Brand: White Foam (Detergent Things Industries India - Unit in Bihar)\n` +
+      `Brand: White Foam (manufactured in Bihar, available across India)\n` +
       `Shop / Trader Name: ${sampleName}\n` +
       `Phone: ${samplePhone}\n` +
       `Store Address: ${sampleAddress}`
     );
-    window.open(`https://wa.me/919111911111?text=${text}`, '_blank');
+    const whatsappWindow = window.open(`https://wa.me/919111911111?text=${text}`, '_blank');
+    if (whatsappWindow) {
+      setSampleSubmitted(true);
+    } else {
+      setWhatsAppError('WhatsApp did not open. Allow pop-ups and try again.');
+    }
   };
 
   return (
@@ -185,7 +149,7 @@ export const DistributorPortal: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            {language === 'hi' ? 'बिहार में डीलरशिप अवसर' : 'Bihar Dealership & Expansion'}
+            {language === 'hi' ? 'पूरे भारत में डीलरशिप अवसर' : 'Dealership Opportunities Across India'}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-4">
             {t('distributorHeading')}
@@ -200,7 +164,7 @@ export const DistributorPortal: React.FC = () => {
               className="px-6 py-3 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-indigo-600 hover:from-rose-700 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-rose-900/30 transition-all flex items-center gap-2 cursor-pointer"
             >
               <Send className="w-4 h-4" />
-              {language === 'hi' ? 'डीलरशिप के लिए सीधा आवेदन' : 'Apply for District Dealership'}
+              {language === 'hi' ? 'डीलरशिप के लिए सीधा आवेदन' : 'Apply for Dealership'}
             </button>
             <button
               onClick={() => setIsSampleModalOpen(true)}
@@ -212,8 +176,8 @@ export const DistributorPortal: React.FC = () => {
           </div>
         </div>
 
-        {/* 2-Column Grid: Left Calculator, Right Bihar Territory Tracker */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Dealership application and pan-India territory information */}
+        <div className="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT: Distributor Margin Calculator (7 cols) */}
           <div className="lg:col-span-7 bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-xl">
@@ -227,7 +191,7 @@ export const DistributorPortal: React.FC = () => {
                     {language === 'hi' ? 'व्हाइट फोम मुनाफा व आरओआई कैलकुलेटर' : 'White Foam Distributor Margin & ROI'}
                   </h3>
                   <p className="text-xs text-slate-400">
-                    {language === 'hi' ? 'सटीक गणना • प्रत्यक्ष बिहार फैक्ट्री दरें' : 'Realistic Returns • Direct ex-Bihar Factory Rates'}
+                    {language === 'hi' ? 'पूरे भारत में उपलब्ध • सीधे फैक्ट्री से' : 'Available Across India • Direct from Factory'}
                   </p>
                 </div>
               </div>
@@ -382,7 +346,7 @@ export const DistributorPortal: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>24-48 hr direct truck dispatch ex-Bihar</span>
+                  <span>Nationwide dispatch from our Bihar facility</span>
                 </li>
               </ul>
             </div>
@@ -402,14 +366,14 @@ export const DistributorPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT: Bihar 38 Districts Live Territory Checker (5 cols) */}
+          {/* RIGHT: Pan-India territory checker */}
           <div className="lg:col-span-5 bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 backdrop-blur-md shadow-xl flex flex-col h-full">
             <div className="flex items-center justify-between border-b border-slate-700 pb-3 mb-4">
               <div className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-rose-500" />
                 <div>
                   <h3 className="text-base font-bold text-white">
-                    {language === 'hi' ? 'बिहार 38 ज़िला डीलरशिप ट्रैकर' : 'Bihar 38 Districts Territory Tracker'}
+                    {language === 'hi' ? 'भारत भर में डीलरशिप उपलब्धता' : 'Pan-India Dealership Availability'}
                   </h3>
                   <p className="text-[11px] text-slate-400">
                     {language === 'hi' ? 'अपने जिले में वितरक स्लॉट देखें' : 'Check open distributor slots in your district'}
@@ -490,7 +454,7 @@ export const DistributorPortal: React.FC = () => {
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-1">
-                        <span>{language === 'hi' ? d.name : 'Bihar District'}</span>
+                        <span>{language === 'hi' ? d.name : 'Indian District'}</span>
                         <span>•</span>
                         <span className="text-cyan-400 font-bold">{d.slots} slot{d.slots > 1 ? 's' : ''} left</span>
                       </div>
@@ -531,7 +495,7 @@ export const DistributorPortal: React.FC = () => {
                 onClick={() => handleOpenApplyModal()}
                 className="text-rose-400 hover:text-rose-300 font-bold underline cursor-pointer"
               >
-                Apply for Other States
+                Apply from Anywhere in India
               </button>
             </div>
           </div>
@@ -558,7 +522,7 @@ export const DistributorPortal: React.FC = () => {
                   {language === 'hi' ? 'व्हाइट फोम डीलरशिप आवेदन' : 'White Foam Dealership Application'}
                 </h3>
                 <p className="text-xs text-slate-400">
-                  Detergent Things Industries India • Unit in Bihar
+                  Detergent Things Industries India • Dealerships Across India
                 </p>
               </div>
             </div>
@@ -568,9 +532,9 @@ export const DistributorPortal: React.FC = () => {
                 <div className="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto border border-emerald-500/40">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h4 className="text-lg font-bold text-white">Application Received & Dispatched!</h4>
+                <h4 className="text-lg font-bold text-white">WhatsApp Draft Ready</h4>
                 <p className="text-xs text-slate-300 max-w-sm mx-auto">
-                  Our Bihar Regional Sales Manager will call you within 2 hours. A WhatsApp confirmation chat has also been opened with your details.
+                  Review your details in WhatsApp and tap Send. Your application is not submitted until you send the message.
                 </p>
                 <button
                   onClick={() => setIsApplyModalOpen(false)}
@@ -581,6 +545,7 @@ export const DistributorPortal: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleApplySubmit} className="space-y-4">
+                {whatsAppError && <p role="alert" className="text-xs font-semibold text-rose-300">{whatsAppError}</p>}
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1">
                     Your Full Name / आपका नाम *
@@ -626,36 +591,30 @@ export const DistributorPortal: React.FC = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Target District / ज़िला *
+                      City / District *
                     </label>
                     <input
                       type="text"
                       required
                       value={applicantDistrict}
                       onChange={(e) => setApplicantDistrict(e.target.value)}
-                      placeholder="e.g. Patna, Gaya, Bhagalpur"
+                      placeholder="e.g. Jaipur, Pune, Patna"
                       className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-rose-500"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Town / Tehsil / Area
+                      State / Union Territory *
                     </label>
                     <input
                       type="text"
-                      value={applicantTown}
-                      onChange={(e) => setApplicantTown(e.target.value)}
-                      placeholder="e.g. Danapur, Barh"
+                      required
+                      value={applicantState}
+                      onChange={(e) => setApplicantState(e.target.value)}
+                      placeholder="e.g. Rajasthan, Maharashtra, Bihar"
                       className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-rose-500"
                     />
                   </div>
-                </div>
-
-                <div className="p-3 bg-slate-800/80 rounded-lg border border-slate-700 text-xs flex items-center justify-between">
-                  <span className="text-slate-300 font-medium">Selected Investment Capacity:</span>
-                  <span className="font-bold text-rose-400 font-mono">
-                    ₹{investmentAmount.toLocaleString('en-IN')} ({partnerTier.toUpperCase()})
-                  </span>
                 </div>
 
                 <button
@@ -691,7 +650,7 @@ export const DistributorPortal: React.FC = () => {
                   {language === 'hi' ? 'मुफ़्त व्हाइट फोम सैंपल किट' : 'Free Retailer Sample Kit'}
                 </h3>
                 <p className="text-xs text-slate-400">
-                  Direct dispatch from Bihar manufacturing facility
+                  Pan-India dispatch from our Bihar manufacturing facility
                 </p>
               </div>
             </div>
@@ -709,9 +668,9 @@ export const DistributorPortal: React.FC = () => {
             {sampleSubmitted ? (
               <div className="text-center py-6 space-y-3">
                 <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                <h4 className="text-base font-bold text-white">Sample Kit Request Queued!</h4>
+                <h4 className="text-base font-bold text-white">WhatsApp Draft Ready</h4>
                 <p className="text-xs text-slate-300">
-                  Your sample box will be packed at our Bihar facility and dispatched via Speed Post / DTDC.
+                  Review your details and tap Send in WhatsApp to request delivery to your address anywhere in India.
                 </p>
                 <button
                   onClick={() => setIsSampleModalOpen(false)}
@@ -722,6 +681,7 @@ export const DistributorPortal: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSampleSubmit} className="space-y-3">
+                {whatsAppError && <p role="alert" className="text-xs font-semibold text-rose-300">{whatsAppError}</p>}
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1">
                     Store / Trader Name *
@@ -757,7 +717,7 @@ export const DistributorPortal: React.FC = () => {
                     rows={2}
                     value={sampleAddress}
                     onChange={(e) => setSampleAddress(e.target.value)}
-                    placeholder="Shop No., Market / Road, District, Bihar - PIN"
+                    placeholder="Shop No., Road, City / District, State - PIN"
                     className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-amber-400"
                   />
                 </div>

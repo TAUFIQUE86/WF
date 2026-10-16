@@ -45,13 +45,13 @@ export const Footer: React.FC<FooterProps> = ({
                   Detergent Things Industries India
                 </span>
                 <span className="text-xs font-bold text-amber-400">
-                  White Foam • Chamak jo khud Bole
+                  White Foam • चमक जो खुद बोले
                 </span>
               </div>
             </div>
 
             <div className="text-xs text-indigo-400 font-bold tracking-widest uppercase">
-              CHAMAK JO KHUD BOLE • CLEAN IS OUR BUSINESS. INTEGRITY IS OUR PROMISE.
+              चमक जो खुद बोले • CLEAN IS OUR BUSINESS. INTEGRITY IS OUR PROMISE.
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
@@ -191,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => scrollTo('distributor-portal')}
                   className="hover:text-white transition-colors cursor-pointer text-rose-400 font-bold"
                 >
-                  Bihar Dealership & ROI Calculator
+                  Dealerships Across India
                 </button>
               </li>
               <li>
@@ -239,7 +239,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={onOpenCookie}
                   className="hover:text-white transition-colors cursor-pointer underline text-[11px]"
                 >
-                  Cookie Consent & Privacy
+                  Privacy Notice
                 </button>
               </li>
             </ul>
@@ -274,7 +274,7 @@ export const Footer: React.FC<FooterProps> = ({
             &copy; {new Date().getFullYear()} Detergent Things Industries India. All rights reserved. Unit in Bihar.
           </div>
           <div className="flex items-center gap-4">
-            <span>White Foam • Chamak jo khud Bole</span>
+            <span>White Foam • चमक जो खुद बोले</span>
             <span>•</span>
             <span>Clean is our business. Integrity is our promise.</span>
           </div>

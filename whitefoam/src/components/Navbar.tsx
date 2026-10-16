@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { COMPANY_PROFILE } from '../data/detergentData';
 import { useLanguage } from '../context/LanguageContext';
-import { BrandJingleButton } from './BrandJingleButton';
 
 interface NavbarProps {
   activeBrandFilter: 'all' | 'powder' | 'cake' | 'pod_liquid';
@@ -47,27 +46,22 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
       {/* Top Utility Bar */}
       <div className="bg-slate-900 text-slate-300 text-xs py-2 px-4 sm:px-8 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4 text-slate-300">
-            <span className="flex items-center gap-1.5 font-medium text-emerald-400">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex min-w-0 flex-1 items-center gap-4 text-slate-300">
+            <span className="flex min-w-0 items-center gap-1.5 truncate font-medium text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               {language === 'hi' 
                 ? 'सरकारी मान्यता प्राप्त स्टार एक्सपोर्ट हाउस • आईएसओ 9001:2015 प्रमाणित इकाई' 
                 : 'Govt. Recognized Star Export House & ISO 9001:2015 Certified Facilities'}
             </span>
-            <span className="hidden md:inline text-slate-600">|</span>
-            <span className="hidden md:inline text-rose-300 font-semibold flex items-center gap-1">
+            <span className="hidden xl:inline text-slate-600">|</span>
+            <span className="hidden xl:flex text-rose-300 font-semibold items-center gap-1">
               <MapPin className="w-3 h-3 text-rose-400" />
               {language === 'hi' ? 'विनिर्माण इकाई: बिहार, भारत' : 'Unit in Bihar, India'}
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* Audio Slogan Jingle Button */}
-            <BrandJingleButton compact={true} />
-
-            <span className="text-slate-700">|</span>
-
+          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
@@ -104,19 +98,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-base sm:text-lg tracking-tight text-slate-900">
-                  {language === 'hi' ? 'डिटर्जेंट थिंग्स इंडस्ट्रीज इंडिया' : 'Detergent Things Industries India'}
-                </span>
-                <span className="hidden sm:inline-block text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">
-                  BIHAR UNIT
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-600 font-medium flex items-center gap-1.5 flex-wrap">
-                <span className="font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-1.5 py-0.2 rounded">
+                <span className="whitespace-nowrap font-extrabold text-base sm:text-lg tracking-tight text-slate-900">
                   {language === 'hi' ? 'व्हाइट फोम' : 'White Foam'}
                 </span>
-                <span className="text-rose-700 font-bold">• {language === 'hi' ? 'चमक जो खुद बोले' : 'Chamak jo khud Bole'}</span>
-                <span className="text-slate-400 font-normal">| Bihar Plant</span>
+              </div>
+              <p className="whitespace-nowrap text-[10px] text-slate-500 font-medium">
+                Detergent Things Industries • Bihar, India
               </p>
             </div>
           </div>
@@ -146,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Primary Nav Links */}
-        <nav className="hidden xl:flex items-center gap-5 text-xs lg:text-sm font-semibold text-slate-700">
+        <nav className="hidden 2xl:flex items-center gap-5 text-xs lg:text-sm font-semibold text-slate-700">
           <button
             onClick={() => scrollTo('whitefoam-products')}
             className="hover:text-rose-600 transition-colors cursor-pointer py-1"
@@ -163,13 +150,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t('navStainLab')}
           </button>
 
-          {/* New Distributor ROI & Bihar Territory Tracker link */}
+          {/* Pan-India dealership link */}
           <button
             onClick={() => scrollTo('distributor-portal')}
             className="hover:text-rose-600 transition-colors cursor-pointer py-1 flex items-center gap-1 text-rose-600 font-bold"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-ping"></span>
-            {language === 'hi' ? 'बिहार डीलरशिप व ROI' : 'Bihar Dealership & ROI'}
+            {language === 'hi' ? 'भारत भर में डीलरशिप' : 'Pan-India Dealerships'}
           </button>
 
           <button
@@ -222,7 +209,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 cursor-pointer"
+            className="2xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 cursor-pointer"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -231,7 +220,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-t border-slate-200 px-6 py-5 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="2xl:hidden bg-white border-t border-slate-200 px-6 py-5 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
           <div className="flex items-center justify-between pb-2 border-b border-slate-100">
             <span className="text-xs font-bold text-slate-500">भाषा चुनें / Choose Language:</span>
             <button
@@ -278,7 +267,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => scrollTo('distributor-portal')}
               className="w-full text-left py-2 text-rose-600 font-extrabold flex items-center justify-between"
             >
-              <span>{language === 'hi' ? 'बिहार डीलरशिप व मुनाफा कैलकुलेटर' : 'Bihar Dealership & ROI Calculator'}</span>
+              <span>{language === 'hi' ? 'भारत भर में डीलरशिप' : 'Pan-India Dealerships'}</span>
               <span className="text-[10px] bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-bold">HOT</span>
             </button>
             <button
@@ -304,7 +293,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => scrollTo('whitefoam-spotlight')}
               className="w-full text-left py-2 hover:text-fuchsia-600 font-bold"
             >
-              White Foam BIG SHOT • Chamak jo khud Bole
+              White Foam BIG SHOT • चमक जो खुद बोले
             </button>
             <button
               onClick={() => scrollTo('wash-guide')}
@@ -340,7 +329,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="w-full py-2.5 rounded-lg bg-rose-600 text-white font-bold text-xs uppercase tracking-wider text-center"
             >
-              Apply for Bihar Dealership
+              Apply for Dealership
             </button>
             <button
               onClick={() => {

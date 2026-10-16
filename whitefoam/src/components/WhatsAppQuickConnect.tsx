@@ -14,9 +14,9 @@ export const WhatsAppQuickConnect: React.FC = () => {
     let message = '';
 
     if (selectedIntent === 'dealership') {
-      message = `Hello Detergent Things Industries India! I want dealership details for White Foam in District: ${district || 'Bihar'}. My name is ${name || 'Trader'}.`;
+      message = `Hello Detergent Things Industries India! I want White Foam dealership details for ${district || 'my area in India'}. My name is ${name || 'Trader'}.`;
     } else if (selectedIntent === 'sample') {
-      message = `Hello! I would like to request a free White Foam Sample Kit for my store in ${district || 'Bihar'}. My name is ${name || 'Shopkeeper'}.`;
+      message = `Hello! I would like to request a free White Foam Sample Kit for my store in ${district || 'India'}. My name is ${name || 'Shopkeeper'}.`;
     } else if (selectedIntent === 'bulk') {
       message = `Hello Detergent Things Industries India! Please send me the wholesale factory price list for White Foam Detergent Powders & Cakes.`;
     } else {
@@ -31,15 +31,15 @@ export const WhatsAppQuickConnect: React.FC = () => {
   return (
     <>
       {/* Floating Action Button on Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-4 right-4 z-40">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="group flex items-center gap-2 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xl shadow-emerald-950/20 transition-all hover:scale-105 cursor-pointer ring-4 ring-emerald-500/20"
+          className="group flex h-10 w-10 items-center justify-center gap-2 rounded-full bg-emerald-700 p-2.5 text-white shadow-xl shadow-emerald-950/20 transition-colors hover:bg-emerald-800 cursor-pointer sm:h-auto sm:w-auto sm:px-4 sm:py-3"
           aria-label="Connect on WhatsApp"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-200 animate-ping"></span>
           <MessageCircle className="w-4 h-4 fill-white text-emerald-600" />
-          <span className="tracking-wide">
+          <span className="hidden tracking-wide sm:inline">
             {language === 'hi' ? 'व्हाट्सएप सहायता' : 'WhatsApp Connect'}
           </span>
         </button>
@@ -59,7 +59,7 @@ export const WhatsAppQuickConnect: React.FC = () => {
                 </h4>
                 <p className="text-[10px] text-emerald-700 font-bold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                  Factory Sales Desk • Active ex-Bihar Unit
+                  India-wide support • Dispatch from Bihar
                 </p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export const WhatsAppQuickConnect: React.FC = () => {
           <form onSubmit={handleLaunchWhatsApp} className="space-y-3.5">
             <div>
               <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                {language === 'hi' ? 'आप क्या जानना चाहते हैं?' : 'How can our Bihar team help you?'}
+                {language === 'hi' ? 'आप क्या जानना चाहते हैं?' : 'How can our team help your business across India?'}
               </label>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {[
@@ -102,11 +102,11 @@ export const WhatsAppQuickConnect: React.FC = () => {
 
             <div>
               <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
-                {language === 'hi' ? 'आपका ज़िला (बिहार):' : 'Your District (Bihar / India):'}
+                {language === 'hi' ? 'आपका शहर / ज़िला और राज्य:' : 'Your City / District and State:'}
               </label>
               <input
                 type="text"
-                placeholder="e.g. Patna, Gaya, Muzaffarpur, Darbhanga..."
+                placeholder="e.g. Jaipur, Rajasthan or Patna, Bihar"
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
                 className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-emerald-600"

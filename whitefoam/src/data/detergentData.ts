@@ -49,13 +49,13 @@ export interface JobOpening {
 export const COMPANY_PROFILE = {
   name: 'Detergent Things Industries India',
   productName: 'White Foam',
-  tagline: 'Chamak jo khud Bole',
+  tagline: 'चमक जो खुद बोले',
   motto: 'Clean is our business. Integrity is our promise.',
   unitLocation: 'Unit in Bihar, India',
   corporateEmail: 'contact@detergentthings.in',
   corporatePhone: '+91 9111911111',
   story:
-    'Detergent Things Industries India was established to revolutionize fabric care across the nation. Through our modern manufacturing unit in Bihar and advanced formulation labs, our flagship brand White Foam delivers unmatched stain removal, sparkling whiteness, and long-lasting fabric protection with the proud promise of "Chamak jo khud Bole".',
+    'Detergent Things Industries India was established to revolutionize fabric care across the nation. Through our modern manufacturing unit in Bihar and advanced formulation labs, our flagship brand White Foam delivers unmatched stain removal, sparkling whiteness, and long-lasting fabric protection with the proud promise of "चमक जो खुद बोले".',
   highlights: [
     'Unit in Bihar with advanced automated production lines',
     'Flagship White Foam fabric care range for handwash & machines',
@@ -72,7 +72,7 @@ export const PRODUCTS_CATALOG: Product[] = [
     brand: 'White Foam',
     category: 'powder',
     washNeed: ['handwash', 'semi_auto', 'fully_auto'],
-    tagline: 'Chamak jo khud Bole • Fast Action Technology',
+    tagline: 'चमक जो खुद बोले • Fast Action Technology',
     description:
       'The crown jewel of Detergent Things Industries India. Formulated at our Bihar manufacturing unit with advanced Fast Action micro-granules that dissolve quickly and completely to eradicate tough stains while keeping clothes like new.',
     highlights: [
@@ -121,7 +121,7 @@ export const PRODUCTS_CATALOG: Product[] = [
     brand: 'White Foam',
     category: 'powder',
     washNeed: ['handwash', 'semi_auto', 'fully_auto'],
-    tagline: 'Chamak jo khud Bole • Sparkling Whites & Color Shield',
+    tagline: 'चमक जो खुद बोले • Sparkling Whites & Color Shield',
     description:
       'Specially engineered with optical brightness boosters that keep white garments dazzling and colored fabrics vibrant wash after wash.',
     highlights: [
@@ -174,7 +174,7 @@ export const PRODUCTS_CATALOG: Product[] = [
       'Double power stain magnet technology',
       'Jasmine & Rose premium botanical fragrance',
       'Superior stainless whites in every wash',
-      'Chamak jo khud Bole promise',
+      'चमक जो खुद बोले promise',
     ],
     specs: {
       foamLevel: 'High',

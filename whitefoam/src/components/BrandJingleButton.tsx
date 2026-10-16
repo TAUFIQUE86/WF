@@ -47,19 +47,13 @@ export const BrandJingleButton: React.FC<{ compact?: boolean }> = ({ compact = f
       const chimeDuration = notes.length * 140 + 600;
       setTimeout(() => {
         if ('speechSynthesis' in window) {
-          const text = language === 'hi' 
-            ? 'व्हाइट फोम! चमक जो खुद बोले!' 
-            : 'White Foam! Chamak jo khud Bole!';
+          const text = 'व्हाइट फोम! चमक जो खुद बोले!';
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.rate = 1.0;
           utterance.pitch = 1.15;
           utterance.volume = 0.9;
           
-          if (language === 'hi') {
-            utterance.lang = 'hi-IN';
-          } else {
-            utterance.lang = 'en-IN';
-          }
+          utterance.lang = 'hi-IN';
 
           utterance.onend = () => {
             setIsPlaying(false);
@@ -107,7 +101,7 @@ export const BrandJingleButton: React.FC<{ compact?: boolean }> = ({ compact = f
         ) : (
           <>
             <Volume2 className="w-3.5 h-3.5" />
-            <span>🎵 Chamak jo khud Bole</span>
+            <span>🎵 चमक जो खुद बोले</span>
           </>
         )}
       </button>
@@ -139,7 +133,7 @@ export const BrandJingleButton: React.FC<{ compact?: boolean }> = ({ compact = f
         <p className="text-[11px] font-semibold text-slate-600">
           {isPlaying
             ? (language === 'hi' ? 'धुन बज रही है...' : 'Playing musical chime...')
-            : '"Chamak jo khud Bole" — White Foam'}
+            : '"चमक जो खुद बोले" — White Foam'}
         </p>
       </div>
 

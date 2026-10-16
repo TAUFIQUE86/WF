@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Factory,
   Mail,
@@ -32,11 +32,45 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
     notes: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  useEffect(() => {
+    if (initialProduct) {
+      setFormData((current) => ({ ...current, productInterest: initialProduct }));
+    }
+  }, [initialProduct]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (import.meta.env.DEV) {
+      setSubmitError('Partnership inquiries can be sent from the deployed website.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError('');
+    const body = new URLSearchParams({
+      'form-name': 'oem-inquiry',
+      'bot-field': '',
+      ...formData,
+      privacyConsent: 'yes',
+    });
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!response.ok) throw new Error('Partnership inquiry submission failed');
+      setSubmitted(true);
+    } catch {
+      setSubmitError('We could not send your inquiry. Please email contact@detergentthings.in.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -55,12 +89,12 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                 Detergent Things Industries India
               </h2>
               <p className="text-sm font-semibold text-indigo-700">
-                White Foam Manufacturing & Contract Packaging • Unit in Bihar
+                Pan-India OEM & Contract Packaging • Bihar Manufacturing Facility
               </p>
             </div>
 
             <p className="text-slate-600 text-sm leading-relaxed font-normal">
-              With high-speed automated lines at our state-of-the-art Bihar Unit, we formulate and package White Foam and private labels for leading regional distributors, institutional buyers, and retail chains across India.
+              From our high-speed manufacturing facility in Bihar, we formulate and package White Foam and private labels for distributors, institutional buyers, and retail chains across India.
             </p>
 
             {/* Direct Contact Card */}
@@ -145,7 +179,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                   Partnership Inquiry Received!
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you, <span className="font-bold">{formData.contactPerson}</span>. Our B2B commercial team at Detergent Things Industries India (Bihar Unit) will review your requirement for {formData.estimatedMonthlyVolume} and reach out within 24 hours.
+                  Thank you, <span className="font-bold">{formData.contactPerson}</span>. Our national B2B team will review your requirement for {formData.estimatedMonthlyVolume} and reach out within 24 hours.
                 </p>
                 <div className="pt-4">
                   <button
@@ -157,7 +191,18 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                name="oem-inquiry"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
+                <input type="hidden" name="form-name" value="oem-inquiry" />
+                <div className="hidden" aria-hidden="true">
+                  <label>Leave this field empty<input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
+                </div>
                 <div>
                   <h3 className="text-xl font-black text-slate-900">
                     Explore Manufacturing Partnerships
@@ -174,6 +219,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                     </label>
                     <input
                       type="text"
+                      name="companyName"
                       required
                       placeholder="e.g. Apex FMCG Ltd."
                       value={formData.companyName}
@@ -188,6 +234,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                     </label>
                     <input
                       type="text"
+                      name="contactPerson"
                       required
                       placeholder="Your Full Name"
                       value={formData.contactPerson}
@@ -197,6 +244,19 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                   </div>
                 </div>
 
+                <div>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
+                    Product or Service of Interest
+                  </label>
+                  <input
+                    type="text"
+                    name="productInterest"
+                    value={formData.productInterest}
+                    onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs text-slate-900 focus:outline-indigo-600"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
@@ -204,6 +264,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                     </label>
                     <input
                       type="email"
+                      name="email"
                       required
                       placeholder="procurement@company.com"
                       value={formData.email}
@@ -218,6 +279,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                     </label>
                     <input
                       type="tel"
+                      name="phone"
                       required
                       placeholder="+91 98765 43210"
                       value={formData.phone}
@@ -233,6 +295,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                       Partnership Category
                     </label>
                     <select
+                      name="serviceType"
                       value={formData.serviceType}
                       onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs text-slate-900 focus:outline-indigo-600"
@@ -250,6 +313,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                       Estimated Monthly Volume
                     </label>
                     <select
+                      name="estimatedMonthlyVolume"
                       value={formData.estimatedMonthlyVolume}
                       onChange={(e) => setFormData({ ...formData, estimatedMonthlyVolume: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs text-slate-900 focus:outline-indigo-600"
@@ -267,6 +331,7 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                     Specific Requirements or Product References
                   </label>
                   <textarea
+                    name="notes"
                     rows={3}
                     placeholder="Provide formulation targets, active matter % required, fragrance preference, or target export country..."
                     value={formData.notes}
@@ -275,12 +340,21 @@ export const ManufacturingPartnership: React.FC<ManufacturingPartnershipProps> =
                   ></textarea>
                 </div>
 
+                <label className="flex items-start gap-2 text-xs leading-relaxed text-slate-600">
+                  <input type="checkbox" name="privacyConsent" value="yes" required className="mt-0.5 accent-rose-600" />
+                  <span>I agree to send my business contact details and inquiry for follow-up. See the Privacy Notice in the footer.</span>
+                </label>
+
+                {submitError && <p role="alert" className="text-xs font-semibold text-rose-700">{submitError}</p>}
+
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  className="w-full py-3.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:cursor-wait disabled:opacity-60"
                 >
                   <Send className="w-4 h-4" />
-                  Submit Partnership Inquiry to Bihar Unit (Detergent Things)
+                  {isSubmitting ? 'Sending...' : 'Submit Partnership Inquiry'}
                 </button>
               </form>
             )}

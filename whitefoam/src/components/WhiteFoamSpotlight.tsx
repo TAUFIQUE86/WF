@@ -150,7 +150,7 @@ export const WhiteFoamSpotlight: React.FC<WhiteFoamSpotlightProps> = ({
               </h3>
             </div>
             <span className="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 font-medium">
-              Flagship Premium Formulation • Chamak jo khud Bole
+              Flagship Premium Formulation • चमक जो खुद बोले
             </span>
           </div>
 

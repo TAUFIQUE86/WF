@@ -19,7 +19,7 @@ export const WashGuide: React.FC = () => {
 
   const washMethods = {
     handwash: {
-      title: 'Hand-Wash Mastery (Chamak jo khud Bole)',
+      title: 'Hand-Wash Mastery (चमक जो खुद बोले)',
       badge: 'Classic Household Protocol',
       recommendedProduct: 'White Foam Clean Bar Cake + White Foam BIG SHOT Powder',
       steps: [

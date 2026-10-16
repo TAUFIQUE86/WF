@@ -192,7 +192,7 @@ export const StainLaboratory: React.FC = () => {
               </span>
               <span className="flex items-center gap-1.5 text-emerald-700">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                AFTER WHITE FOAM (Chamak jo khud Bole)
+                AFTER WHITE FOAM (चमक जो खुद बोले)
               </span>
             </div>
 

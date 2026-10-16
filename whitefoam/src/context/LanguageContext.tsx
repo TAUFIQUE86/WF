@@ -20,7 +20,7 @@ const translations: Translations = {
     hi: 'व्हाइट फोम',
   },
   tagline: {
-    en: 'Chamak jo khud Bole',
+    en: 'चमक जो खुद बोले',
     hi: 'चमक जो खुद बोले',
   },
   subTagline: {
@@ -42,8 +42,8 @@ const translations: Translations = {
     hi: 'दाग-धब्बा लैब',
   },
   navDistributorPortal: {
-    en: 'Distributor ROI & Bihar Territory',
-    hi: 'डीलरशिप व मुनाफा कैलकुलेटर',
+    en: 'Pan-India Dealerships',
+    hi: 'भारत भर में डीलरशिप',
   },
   navWashGuide: {
     en: 'How to Wash',
@@ -84,7 +84,7 @@ const translations: Translations = {
     hi: 'डिटर्जेंट थिंग्स इंडस्ट्रीज इंडिया',
   },
   heroHeadingLine2: {
-    en: 'White Foam — Chamak jo khud Bole',
+    en: 'White Foam — चमक जो खुद बोले',
     hi: 'व्हाइट फोम — चमक जो खुद बोले',
   },
   heroSubtext: {
@@ -96,8 +96,8 @@ const translations: Translations = {
     hi: 'व्हाइट फोम उत्पाद देखें',
   },
   heroCtaDistributor: {
-    en: 'Check Bihar Dealership Availability',
-    hi: 'बिहार डीलरशिप उपलब्धता जांचें',
+    en: 'Become a distributor',
+    hi: 'डीलरशिप के लिए आवेदन करें',
   },
   heroCtaSample: {
     en: 'Get Free Retailer Sample Kit',
@@ -106,12 +106,12 @@ const translations: Translations = {
   
   // Distributor Section
   distributorHeading: {
-    en: 'Bihar Territory Dealership & Margin Calculator',
-    hi: 'बिहार जिला डीलरशिप एवं मुनाफा कैलकुलेटर',
+    en: 'Become a White Foam Distributor',
+    hi: 'व्हाइट फोम डीलर बनें',
   },
   distributorSubheading: {
-    en: 'Join the fastest-growing fabric care brand in Eastern India. Calculate your monthly ROI, check district dealership availability across Bihar, and apply in 2 minutes.',
-    hi: 'पूर्वी भारत के सबसे तेज़ी से बढ़ते फैब्रिक केयर ब्रांड से जुड़ें। अपना मासिक मुनाफा जांचें, बिहार के सभी 38 जिलों में डीलरशिप की उपलब्धता देखें और 2 मिनट में आवेदन करें।',
+    en: 'Join White Foam as a dealership partner anywhere in India. Tell us about your business and our team will help you take the next step.',
+    hi: 'भारत में कहीं से भी व्हाइट फोम के डीलरशिप पार्टनर बनें। अपने व्यवसाय की जानकारी दें और हमारी टीम आगे की प्रक्रिया में आपकी सहायता करेगी।',
   },
   
   // Stain Lab Section
