@@ -1,0 +1,8 @@
+{
+  "name": "WhiteFoam",
+  "description": "White Foam: Chamak jo khud Bole - Detergent Things Industries India fabric care, interactive stain laboratory and Bihar dealership portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
