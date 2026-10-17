@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               </div>
               <p className="whitespace-nowrap text-[10px] text-slate-500 font-medium">
-                Detergent Things Industries • Bihar, India
+                Detergent Things Industries India
               </p>
             </div>
           </div>

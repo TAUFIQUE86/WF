@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-indigo-50: #eef8fc;
+  --color-indigo-100: #d9eff8;
+  --color-indigo-200: #b9e2f1;
+  --color-indigo-300: #8bcce5;
+  --color-indigo-400: #55aed3;
+  --color-indigo-500: #298ab8;
+  --color-indigo-600: #1c6d9b;
+  --color-indigo-700: #17557f;
+  --color-indigo-800: #174566;
+  --color-indigo-900: #173b57;
+  --color-indigo-950: #0d2438;
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
@@ -33,15 +47,15 @@
 }
 
 .product-art[data-product-image="white-foam-big-shot"] {
-  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 9%) 16px 18px), linear-gradient(125deg, #9f1239, #e11d48 58%, #d97706);
+  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 12%) 16px 18px), linear-gradient(125deg, #153668, #1d5b9f 58%, #e4b933);
 }
 
 .product-art[data-product-image="white-foam-active"] {
-  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 10%) 16px 18px), linear-gradient(125deg, #075985, #0284c7 55%, #0f766e);
+  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 12%) 16px 18px), linear-gradient(125deg, #12446e, #1599bd 55%, #78d2df);
 }
 
 .product-art[data-product-image="white-foam-advance"] {
-  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 10%) 16px 18px), linear-gradient(125deg, #1e3a8a, #2563eb 55%, #0f766e);
+  background-image: repeating-linear-gradient(135deg, transparent 0 16px, rgb(255 255 255 / 12%) 16px 18px), linear-gradient(125deg, #193a73, #277bb4 55%, #77cfe0);
 }
 
 .product-art[data-product-image="white-foam-lime-fresh"] {

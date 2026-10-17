@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Sparkles,
-  ShieldCheck,
   Zap,
   CheckCircle2,
   Droplets,
@@ -11,12 +10,10 @@ import {
   RotateCcw,
   Shirt,
   Building2,
-  MapPin,
   TrendingUp,
 } from 'lucide-react';
 import { STAIN_REMOVAL_GUIDE } from '../data/detergentData';
 import { useLanguage } from '../context/LanguageContext';
-import { BrandJingleButton } from './BrandJingleButton';
 import oxiBoosterImage from '../../White Foam Oxi Booster.jpg';
 
 interface HeroSectionProps {
@@ -59,10 +56,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
                 WHITE FOAM FABRIC CARE
               </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                {language === 'hi' ? 'विनिर्माण इकाई: बिहार, भारत' : 'Unit in Bihar, India'}
-              </span>
             </div>
 
             <div className="space-y-3">
@@ -76,21 +69,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </p>
             </div>
 
-            {/* Audio Jingle Inline Bar */}
-            <div className="pt-1">
-              <BrandJingleButton />
-            </div>
-
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-slate-600">
-              <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-teal-700" />ISO 9001:2015</span>
-              <span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-teal-700" />Made in Bihar, India</span>
-            </div>
-
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={onExploreProducts}
-                className="w-full sm:w-auto justify-center px-6 py-3 rounded-lg bg-rose-700 hover:bg-rose-800 text-white font-bold text-sm transition-colors flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto justify-center px-6 py-3 rounded-lg bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-sm transition-colors flex items-center gap-2 cursor-pointer"
               >
                 {t('heroCtaExplore')}
                 <ArrowRight className="w-4 h-4" />
