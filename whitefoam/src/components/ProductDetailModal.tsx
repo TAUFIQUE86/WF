@@ -7,20 +7,17 @@ import {
   Sparkles,
   Package,
   ShieldCheck,
-  Send,
 } from 'lucide-react';
 import { Product } from '../data/detergentData';
 
 interface ProductDetailModalProps {
   product: Product | null;
   onClose: () => void;
-  onOpenPartnership: (productName: string) => void;
 }
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   product,
   onClose,
-  onOpenPartnership,
 }) => {
   if (!product) return null;
 
@@ -135,16 +132,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
         {/* Actions */}
         <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center gap-3">
-          <button
-            onClick={() => {
-              onClose();
-              onOpenPartnership(product.name);
-            }}
-            className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+          <a
+            href={`https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-800 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-colors hover:bg-indigo-900"
           >
-            <Send className="w-4 h-4" />
-            Request B2B Quote for {product.name}
-          </button>
+            Find price from a seller
+          </a>
           <button
             onClick={onClose}
             className="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs uppercase tracking-wider hover:bg-slate-100 cursor-pointer"

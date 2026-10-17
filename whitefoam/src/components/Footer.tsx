@@ -4,10 +4,7 @@ import {
   Mail,
   Phone,
   MapPin,
-  Globe,
   ArrowUp,
-  ShieldCheck,
-  Award,
   Sparkles,
 } from 'lucide-react';
 
@@ -23,6 +20,14 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenCareers,
 }) => {
   const scrollTo = (id: string) => {
+    if (id === 'stain-lab') {
+      window.location.assign('/stain-guide');
+      return;
+    }
+    if (window.location.pathname !== '/') {
+      window.location.assign(`/#${id}`);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -234,38 +239,8 @@ export const Footer: React.FC<FooterProps> = ({
                   Bihar Manufacturing Unit
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={onOpenCookie}
-                  className="hover:text-white transition-colors cursor-pointer underline text-[11px]"
-                >
-                  Privacy Notice
-                </button>
-              </li>
             </ul>
           </div>
-        </div>
-
-        {/* Accreditations Row */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-2 text-xs font-bold text-slate-300">
-              <Award className="w-4 h-4 text-amber-400" />
-              <span>STAR EXPORT HOUSE - RECOGNIZED BY GOVT. OF INDIA</span>
-            </div>
-            <div className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-2 text-xs font-bold text-slate-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>GMP - GOOD MANUFACTURING PRACTICE</span>
-            </div>
-            <div className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-2 text-xs font-bold text-slate-300">
-              <Globe className="w-4 h-4 text-cyan-400" />
-              <span>ISO 9001:2015 CERTIFIED</span>
-            </div>
-          </div>
-
-          <p className="text-xs text-slate-400 font-semibold text-center md:text-right">
-            Official fabric care portal of Detergent Things Industries India & White Foam.
-          </p>
         </div>
 
         {/* Bottom Copyright & Disclaimer */}
@@ -273,10 +248,12 @@ export const Footer: React.FC<FooterProps> = ({
           <div>
             &copy; {new Date().getFullYear()} Detergent Things Industries India. All rights reserved. Unit in Bihar.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <span>White Foam • चमक जो खुद बोले</span>
             <span>•</span>
             <span>Clean is our business. Integrity is our promise.</span>
+            <button onClick={onOpenCookie} className="underline underline-offset-2 hover:text-white">Privacy Notice</button>
+            <button onClick={() => scrollTo('terms')} className="underline underline-offset-2 hover:text-white">Terms & purchase info</button>
           </div>
         </div>
       </div>

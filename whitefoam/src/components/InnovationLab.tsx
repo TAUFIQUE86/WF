@@ -12,11 +12,7 @@ import {
 } from 'lucide-react';
 import { RND_FACILITIES, Facility } from '../data/detergentData';
 
-interface InnovationLabProps {
-  onOpenPartnership: () => void;
-}
-
-export const InnovationLab: React.FC<InnovationLabProps> = ({ onOpenPartnership }) => {
+export const InnovationLab: React.FC = () => {
   const [selectedFacility, setSelectedFacility] = useState<Facility>(RND_FACILITIES[0]);
   const [activeTab, setActiveTab] = useState<'facilities' | 'qa_process'>('facilities');
 
@@ -157,10 +153,10 @@ export const InnovationLab: React.FC<InnovationLabProps> = ({ onOpenPartnership 
                   </span>
                 </div>
                 <button
-                  onClick={onOpenPartnership}
+                  onClick={() => document.getElementById('certifications-strip')?.scrollIntoView({ behavior: 'smooth' })}
                   className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
                 >
-                  Request Facility Audit / OEM Visit
+                  View quality standards
                 </button>
               </div>
             </div>

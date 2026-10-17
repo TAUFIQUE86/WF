@@ -9,7 +9,6 @@ import oxiBoosterImage from '../../White Foam Oxi Booster.jpg';
 
 interface WhiteFoamConsumerProductsProps {
   onSelectProduct: (product: Product) => void;
-  onOpenPartnership: () => void;
 }
 
 interface ProductTileProps {
@@ -60,7 +59,6 @@ const ProductTile: React.FC<ProductTileProps> = ({ product, categoryLabel, onSel
 
 export const WhiteFoamConsumerProducts: React.FC<WhiteFoamConsumerProductsProps> = ({
   onSelectProduct,
-  onOpenPartnership,
 }) => {
   const powderVariants = PRODUCTS_CATALOG.filter((product) => product.category === 'powder');
   const cakeVariants = PRODUCTS_CATALOG.filter((product) => product.category === 'cake');
@@ -160,12 +158,7 @@ export const WhiteFoamConsumerProducts: React.FC<WhiteFoamConsumerProductsProps>
               <span className="text-xs font-semibold text-slate-500">
                 100% Biodegradable Surfactants • Fast Action Micro-beads
               </span>
-              <button
-                onClick={onOpenPartnership}
-                className="text-xs font-bold text-indigo-700 hover:text-indigo-900 flex items-center gap-1 cursor-pointer"
-              >
-                Inquire for Bulk Supply Across India &gt;
-              </button>
+              <a href="#where-to-buy" className="text-xs font-bold text-indigo-800 underline underline-offset-4">Find a retailer</a>
             </div>
           </div>
 
@@ -206,12 +199,7 @@ export const WhiteFoamConsumerProducts: React.FC<WhiteFoamConsumerProductsProps>
               <span className="text-xs font-semibold text-slate-500">
                 Long-lasting Zero-Wastage Bar Matrix
               </span>
-              <button
-                onClick={onOpenPartnership}
-                className="text-xs font-bold text-rose-700 hover:text-rose-900 flex items-center gap-1 cursor-pointer"
-              >
-                Contract Cake Manufacturing &gt;
-              </button>
+              <a href="#where-to-buy" className="text-xs font-bold text-indigo-800 underline underline-offset-4">Find a retailer</a>
             </div>
           </div>
         </div>

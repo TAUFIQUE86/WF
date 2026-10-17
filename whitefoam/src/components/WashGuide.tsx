@@ -197,7 +197,7 @@ export const WashGuide: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {STAIN_REMOVAL_GUIDE.map((sg, idx) => (
+            {STAIN_REMOVAL_GUIDE.slice(0, 3).map((sg, idx) => (
               <div
                 key={idx}
                 className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2"
@@ -225,6 +225,9 @@ export const WashGuide: React.FC = () => {
               </div>
             ))}
           </div>
+          <a href="/stain-guide" className="inline-flex items-center gap-2 text-sm font-bold text-indigo-900 underline decoration-indigo-300 underline-offset-4">
+            View the full stain guide <ChevronDown className="h-4 w-4 -rotate-90" />
+          </a>
         </div>
       </div>
     </section>

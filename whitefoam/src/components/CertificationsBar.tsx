@@ -1,5 +1,4 @@
 import React from 'react';
-import { Award, ShieldCheck, CheckCircle2, Globe, Building } from 'lucide-react';
 import { CERTIFICATIONS } from '../data/detergentData';
 
 export const CertificationsBar: React.FC = () => {
@@ -16,23 +15,17 @@ export const CertificationsBar: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {CERTIFICATIONS.map((cert, i) => (
+          {CERTIFICATIONS.map((cert) => (
             <div
-              key={i}
+              key={cert.code}
               className="p-6 rounded-2xl bg-slate-50 border-2 border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition-colors"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center font-bold shadow-2xs">
-                    {i === 0 ? (
-                      <Globe className="w-5 h-5 text-indigo-600" />
-                    ) : i === 1 ? (
-                      <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                    ) : (
-                      <Award className="w-5 h-5 text-amber-600" />
-                    )}
+                  <div className="min-h-10 flex items-center rounded-lg bg-indigo-50 px-3 text-xs font-black tracking-wide text-indigo-950">
+                    {cert.code}
                   </div>
-                  <span className="text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded bg-slate-200 text-slate-700">
+                  <span className="text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded bg-white text-slate-700">
                     {cert.badge}
                   </span>
                 </div>
@@ -51,10 +44,6 @@ export const CertificationsBar: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-3 mt-4 border-t border-slate-200 flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Audited Batch Compliance Verified</span>
-              </div>
             </div>
           ))}
         </div>

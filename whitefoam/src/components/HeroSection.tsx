@@ -18,15 +18,9 @@ import oxiBoosterImage from '../../White Foam Oxi Booster.jpg';
 
 interface HeroSectionProps {
   onExploreProducts: () => void;
-  onExploreFacilities: () => void;
-  onExplorePartnership: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({
-  onExploreProducts,
-  onExploreFacilities,
-  onExplorePartnership,
-}) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreProducts }) => {
   const { language, t } = useLanguage();
 
   // Interactive Stain Simulator State
@@ -52,17 +46,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Left Column: Headlines & Content */}
           <div className="md:col-span-7 space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black tracking-wide uppercase bg-gradient-to-r from-amber-50 to-rose-50 text-rose-700 border border-rose-200/90 shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-                WHITE FOAM FABRIC CARE
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-1.5 text-xs font-black uppercase text-indigo-900">
+                <Sparkles className="h-3.5 w-3.5 text-yellow-500 fill-yellow-400" />
+                WHITE FOAM · चमक जो खुद बोले
               </span>
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl 2xl:text-6xl font-black text-slate-950 tracking-tight leading-[1.08]">
-                WHITE FOAM <span className="text-rose-600">—</span>
-                <br />
-                <span className="text-2xl sm:text-3xl 2xl:text-4xl text-rose-600">चमक जो खुद बोले.</span>
+              <h1 className="text-4xl sm:text-5xl 2xl:text-6xl font-black text-slate-950 leading-[1.08]">
+                Clean that lasts through every wash.
               </h1>
               <p className="text-base sm:text-lg font-medium text-slate-700 max-w-2xl leading-relaxed">
                 {t('heroSubtext')}
@@ -79,11 +71,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
-                onClick={() => scrollTo('distributor-portal')}
+                onClick={() => scrollTo('where-to-buy')}
                 className="w-full sm:w-auto justify-center px-5 py-3 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold text-sm transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <TrendingUp className="w-4 h-4" />
-                {language === 'hi' ? 'डीलरशिप के लिए आवेदन' : 'Become a distributor'}
+                {language === 'hi' ? 'पास में खरीदें' : 'Find near you'}
               </button>
               <img
                 src={oxiBoosterImage}
@@ -210,27 +202,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Bottom Banner Stats Strip */}
-        <div className="mt-10 pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
-          <div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900">350,000 MT</div>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
-              Annual Surfactant Capacity
-            </div>
-          </div>
-          <div>
-            <div className="text-2xl sm:text-3xl font-black text-rose-600">Unit in Bihar</div>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
-              White Foam Cake & Powder Facility
-            </div>
-          </div>
-          <div>
-            <div className="text-2xl sm:text-3xl font-black text-emerald-600">3 Accreditations</div>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
-              Star Export • GMP • ISO 9001:2015
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
