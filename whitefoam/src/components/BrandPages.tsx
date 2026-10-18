@@ -1,6 +1,7 @@
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { ArrowRight, Check, Clock3, Droplets, Leaf, MapPin, ShieldCheck, Sparkles, WashingMachine } from 'lucide-react';
+import { ArrowRight, Check, Clock3, Droplets, Leaf, MapPin, ShieldCheck, Shirt, Sparkles, WashingMachine } from 'lucide-react';
 import oxiBoosterImage from '../../White Foam Oxi Booster.jpg';
+import { HeroCarousel } from './HeroCarousel';
 
 type Product = {
   id: string;
@@ -44,11 +45,11 @@ function Packshot({ product }: { product: Product }) {
 }
 
 function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
-  return <article className={`product-card${compact ? ' product-card-compact' : ''}`}><Packshot product={product} /><div className="product-card-body"><span className="product-kicker">{product.category}</span><h3>{product.name}</h3><p className="pack-sizes">{product.packs}</p></div></article>;
+  return <article className={`product-card${compact ? ' product-card-compact' : ''}`}><Packshot product={product} /><div className="product-card-body"><span className="product-kicker">{product.category}</span><h3>{product.name}</h3><p className="pack-sizes">{product.packs}</p><div className="product-commerce-meta"><span>Price not listed</span><span>Offer not listed</span><span>No ratings yet</span></div></div></article>;
 }
 
 export function HomePage() {
-  return <main className="site-main home-main"><section className="home-hero"><div className="home-hero-copy"><p className="eyebrow">Detergent Things Industries India · White Foam</p><h1>Clean is our business.<br /><span>Integrity is our promise.</span></h1><p className="hero-hindi" lang="hi">चमक जो खुद बोले</p><p className="hero-support">Thoughtful everyday care for clothes, made in India.</p><div className="hero-actions"><a className="button button-primary" href="/products">Find Your Wash <ArrowRight size={17} /></a><a className="text-link" href="/products">Shop Products</a></div></div><img className="hero-product-image" src={oxiBoosterImage} alt="White Foam Oxi Booster beside fresh laundry and citrus" /></section>
+  return <main className="site-main home-main"><HeroCarousel /><section className="home-categories section-block" aria-labelledby="category-heading"><div className="section-title-row"><div><p className="eyebrow">Shop by category</p><h2 id="category-heading">Laundry and home care.</h2></div></div><div className="category-grid"><a className="category-tile" href="/products?category=Powder"><span className="category-icon"><WashingMachine /></span><span><strong>Detergent powders</strong><small>Explore the powder range</small></span><ArrowRight /></a><a className="category-tile" href="/products?category=Bar"><span className="category-icon"><Shirt /></span><span><strong>Laundry bars</strong><small>Bars and detergent cakes</small></span><ArrowRight /></a><a className="category-tile" href="/products?category=Cleaner"><span className="category-icon"><Sparkles /></span><span><strong>Home care</strong><small>Cleaning essentials</small></span><ArrowRight /></a></div></section>
     <section className="home-products section-block"><div className="section-title-row"><div><p className="eyebrow">Everyday essentials</p><h2>Find your kind of clean.</h2></div><a className="text-link" href="/products">All products <ArrowRight size={16} /></a></div><div className="product-grid home-product-grid">{products.slice(0, 4).map((product) => <ProductCard key={product.id} product={product} compact />)}</div></section>
     <section className="stain-teaser"><div><p className="eyebrow">A stain happens</p><p>Stain on your clothes? Find the right fix in seconds.</p></div><a className="button button-dark" href="/stain-guide">Open Stain Guide <ArrowRight size={16} /></a></section>
     <section className="trust-strip" aria-label="White Foam promises"><div><ShieldCheck /><span>Quality tested</span></div><div><MapPin /><span>Made in India</span></div><div><Leaf /><span>Safe for regular fabrics</span></div></section>
@@ -57,10 +58,11 @@ export function HomePage() {
 }
 
 export function ProductsPage() {
-  const [category, setCategory] = useState('All categories');
+  const [category, setCategory] = useState(() => new URLSearchParams(window.location.search).get('category') || 'All categories');
   const [machine, setMachine] = useState('Any machine');
   const [fabric, setFabric] = useState('Any fabric');
-  const filtered = products.filter((product) => (category === 'All categories' || product.category === category) && (machine === 'Any machine' || product.machine.includes(machine)) && (fabric === 'Any fabric' || product.fabrics.includes(fabric)));
+  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get('q') || '');
+  const filtered = products.filter((product) => (category === 'All categories' || product.category === category) && (machine === 'Any machine' || product.machine.includes(machine)) && (fabric === 'Any fabric' || product.fabrics.includes(fabric)) && product.name.toLowerCase().includes(query.trim().toLowerCase()));
   return <PageFrame eyebrow="The White Foam range" title="Products" intro="Explore the White Foam range." ><section className="filter-bar" aria-label="Filter products"><label>Category<select value={category} onChange={(event) => setCategory(event.target.value)}><option>All categories</option><option>Powder</option><option>Bar</option><option>Cleaner</option></select></label><label>Machine type<select value={machine} onChange={(event) => setMachine(event.target.value)}><option>Any machine</option><option>Hand wash</option><option>Top load</option><option>Front load</option></select></label><label>Fabric type<select value={fabric} onChange={(event) => setFabric(event.target.value)}><option>Any fabric</option><option>Cotton</option><option>Colours</option><option>Delicates</option></select></label><span className="filter-count">{filtered.length} products</span></section><div className="product-grid catalog-grid">{filtered.map((product) => <ProductCard key={product.id} product={product} />)}</div></PageFrame>;
 }
 

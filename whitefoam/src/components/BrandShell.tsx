@@ -10,6 +10,13 @@ const navigation = [
   { label: 'Support', href: '/support' },
 ];
 
+const productCategories = [
+  { label: 'All products', href: '/products' },
+  { label: 'Detergent powders', href: '/products?category=Powder' },
+  { label: 'Laundry bars', href: '/products?category=Bar' },
+  { label: 'Home care', href: '/products?category=Cleaner' },
+];
+
 export function BrandNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -19,14 +26,16 @@ export function BrandNavbar() {
           <span className="brand-monogram">DT</span>
           <span><strong>Detergent Things Industries India</strong><small>White Foam · Fabric Care</small></span>
         </a>
-        <nav className="desktop-nav" aria-label="Main navigation">
-          {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
-        </nav>
-        <a className="header-cta" href="/where-to-buy">Shop now <ArrowRight size={15} /></a>
         <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
+      <nav className="desktop-nav" aria-label="Main navigation">
+        {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      </nav>
+      <nav className="product-category-nav" aria-label="Product categories">
+        {productCategories.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      </nav>
       {menuOpen && <nav className="mobile-nav" aria-label="Mobile navigation">
         {navigation.map((item) => <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}<ArrowRight size={16} /></a>)}
       </nav>}
