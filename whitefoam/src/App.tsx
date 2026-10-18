@@ -1,5 +1,5 @@
-import { WhiteFoamExperience } from './components/WhiteFoamExperience';
+import { ProductDetailExperience } from './components/ProductDetailExperience';
 
 export default function App() {
-  return <WhiteFoamExperience />;
+  return <ProductDetailExperience />;
 }
