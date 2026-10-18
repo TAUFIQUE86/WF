@@ -26,13 +26,13 @@ export function BrandNavbar() {
           <span className="brand-monogram">DT</span>
           <span><strong>Detergent Things Industries India</strong><small>White Foam · Fabric Care</small></span>
         </a>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+        </nav>
         <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
-      <nav className="desktop-nav" aria-label="Main navigation">
-        {navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
-      </nav>
       <nav className="product-category-nav" aria-label="Product categories">
         {productCategories.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
       </nav>
